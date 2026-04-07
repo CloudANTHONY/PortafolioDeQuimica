@@ -90,9 +90,24 @@ body {
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
-    z-index: 10000;
-    mix-blend-mode: difference;
-    transition: transform 0.1s ease;
+    z-index: 99999;
+    transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                width 0.2s ease, 
+                height 0.2s ease,
+                background 0.2s ease;
+    box-shadow: 0 0 15px var(--primary-glow), 0 0 30px var(--primary-glow);
+    transform: translate(-50%, -50%);
+}
+
+.cursor.hover {
+    width: 20px;
+    height: 20px;
+    background: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
+}
+
+.cursor.click {
+    transform: translate(-50%, -50%) scale(0.8);
 }
 
 .cursor-follower {
@@ -102,13 +117,25 @@ body {
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0.5;
+    z-index: 99998;
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                opacity 0.3s ease,
+                width 0.3s ease,
+                height 0.3s ease,
+                border-color 0.2s ease;
+    opacity: 0.6;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-follower.hover {
+    width: 60px;
+    height: 60px;
+    border-color: var(--accent);
+    opacity: 0.8;
 }
 
 body:hover .cursor-follower {
-    opacity: 1;
+    opacity: 0.8;
 }
 
 /* Partículas de fondo */
@@ -1587,15 +1614,25 @@ body:hover .cursor-follower {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 10000;
+    z-index: 50000;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .document-viewer.active {
     opacity: 1;
     visibility: visible;
+}
+
+/* Animacion de entrada del visor */
+.document-viewer .viewer-backdrop {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.document-viewer.active .viewer-backdrop {
+    opacity: 1;
 }
 
 .viewer-backdrop {
@@ -1604,8 +1641,8 @@ body:hover .cursor-follower {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(20px);
+    background: rgba(5, 5, 10, 0.95);
+    backdrop-filter: blur(30px);
 }
 
 .viewer-container {
@@ -1615,12 +1652,25 @@ body:hover .cursor-follower {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    transform: scale(0.95) translateY(20px);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(0.8) translateY(50px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                opacity 0.4s ease;
 }
 
 .document-viewer.active .viewer-container {
     transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+/* Animacion de salida */
+.document-viewer.closing {
+    opacity: 0;
+}
+
+.document-viewer.closing .viewer-container {
+    transform: scale(0.9) translateY(-30px);
+    opacity: 0;
 }
 
 .viewer-header {
@@ -1765,11 +1815,158 @@ body:hover .cursor-follower {
     position: relative;
 }
 
+/* Wrapper para zoom y pan */
+.viewer-image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: grab;
+    transition: cursor 0.2s ease;
+}
+
+.viewer-image-wrapper.dragging {
+    cursor: grabbing;
+}
+
+.viewer-image-wrapper.zoomed {
+    cursor: move;
+}
+
 .viewer-image {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    transition: opacity 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    transform-origin: center center;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.viewer-image.zoom-transition {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Controles de Zoom */
+.viewer-zoom-controls {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(20, 20, 30, 0.95);
+    border-radius: 50px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.viewer-image-container:hover .viewer-zoom-controls {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.zoom-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.zoom-btn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.zoom-btn:active {
+    transform: scale(0.95);
+}
+
+.zoom-level {
+    min-width: 60px;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary-light);
+}
+
+.zoom-slider {
+    width: 100px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--border-color);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.zoom-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.zoom-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+/* Indicador de zoom */
+.zoom-indicator {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(20, 20, 30, 0.9);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--primary-light);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.zoom-indicator.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .viewer-loading {
