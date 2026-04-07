@@ -237,42 +237,15 @@
             </p>
             
             <div class="content-grid" id="tareasGrid">
-                <!-- Las tarjetas se generan dinámicamente con JavaScript -->
-                <div class="content-card animate-on-scroll" data-category="tareas">
-                    <div class="card-header">
-                        <span class="card-number">01</span>
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                <polyline points="14 2 14 8 20 8"/>
-                                <line x1="16" y1="13" x2="8" y2="13"/>
-                                <line x1="16" y1="17" x2="8" y2="17"/>
-                                <polyline points="10 9 9 9 8 9"/>
-                            </svg>
-                        </span>
-                    </div>
-                    <h3 class="card-title">Tarea de Ejemplo</h3>
-                    <p class="card-description">Descripción breve de la tarea realizada. Haz clic para ver más detalles.</p>
-                    <div class="card-footer">
-                        <span class="card-date">Fecha: --/--/----</span>
-                        <button class="card-btn">
-                            <span>Ver más</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="card-glow"></div>
-                </div>
-                
-                <div class="content-card add-card animate-on-scroll">
+                <!-- Las tarjetas se generan dinamicamente desde data/tareas.json -->
+                <div class="content-card add-card animate-on-scroll" style="display: none;">
                     <div class="add-icon">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="12" y1="5" x2="12" y2="19"/>
                             <line x1="5" y1="12" x2="19" y2="12"/>
                         </svg>
                     </div>
-                    <span class="add-text">Agregar Tarea</span>
+                    <span class="add-text">Edita data/tareas.json</span>
                 </div>
             </div>
         </section>
@@ -290,38 +263,15 @@
             </p>
             
             <div class="content-grid" id="labsGrid">
-                <div class="content-card animate-on-scroll" data-category="laboratorios">
-                    <div class="card-header">
-                        <span class="card-number">01</span>
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 3h6v2H9zM9 5v4l-2 8h10l-2-8V5"/>
-                                <path d="M7 17h10v4H7z"/>
-                            </svg>
-                        </span>
-                    </div>
-                    <h3 class="card-title">Laboratorio de Ejemplo</h3>
-                    <p class="card-description">Descripción del laboratorio o experimento realizado en clase.</p>
-                    <div class="card-footer">
-                        <span class="card-date">Fecha: --/--/----</span>
-                        <button class="card-btn">
-                            <span>Ver más</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="card-glow"></div>
-                </div>
-                
-                <div class="content-card add-card animate-on-scroll">
+                <!-- Las tarjetas se generan dinamicamente desde data/laboratorios.json -->
+                <div class="content-card add-card animate-on-scroll" style="display: none;">
                     <div class="add-icon">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="12" y1="5" x2="12" y2="19"/>
                             <line x1="5" y1="12" x2="19" y2="12"/>
                         </svg>
                     </div>
-                    <span class="add-text">Agregar Laboratorio</span>
+                    <span class="add-text">Edita data/laboratorios.json</span>
                 </div>
             </div>
         </section>
@@ -339,38 +289,15 @@
             </p>
             
             <div class="content-grid" id="parcialesGrid">
-                <div class="content-card animate-on-scroll" data-category="parciales">
-                    <div class="card-header">
-                        <span class="card-number">01</span>
-                        <span class="card-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9 11l3 3L22 4"/>
-                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-                            </svg>
-                        </span>
-                    </div>
-                    <h3 class="card-title">Parcial de Ejemplo</h3>
-                    <p class="card-description">Información sobre el examen parcial y su contenido.</p>
-                    <div class="card-footer">
-                        <span class="card-date">Fecha: --/--/----</span>
-                        <button class="card-btn">
-                            <span>Ver más</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14M12 5l7 7-7 7"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="card-glow"></div>
-                </div>
-                
-                <div class="content-card add-card animate-on-scroll">
+                <!-- Las tarjetas se generan dinamicamente desde data/parciales.json -->
+                <div class="content-card add-card animate-on-scroll" style="display: none;">
                     <div class="add-icon">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="12" y1="5" x2="12" y2="19"/>
                             <line x1="5" y1="12" x2="19" y2="12"/>
                         </svg>
                     </div>
-                    <span class="add-text">Agregar Parcial</span>
+                    <span class="add-text">Edita data/parciales.json</span>
                 </div>
             </div>
         </section>
@@ -388,40 +315,15 @@
             </p>
             
             <div class="reflexiones-grid" id="reflexionesGrid">
-                <div class="reflexion-card animate-on-scroll">
-                    <div class="reflexion-header">
-                        <span class="reflexion-tema">Tema 1</span>
-                        <span class="reflexion-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/>
-                                <path d="M8.5 8.5v.01"/>
-                                <path d="M16 15.5v.01"/>
-                                <path d="M12 12v.01"/>
-                                <path d="M11 17v.01"/>
-                                <path d="M7 14v.01"/>
-                            </svg>
-                        </span>
-                    </div>
-                    <h3 class="reflexion-title">Reflexión de Ejemplo</h3>
-                    <p class="reflexion-excerpt">
-                        Tu reflexión personal sobre este tema irá aquí. Expresa tus pensamientos, aprendizajes y conclusiones...
-                    </p>
-                    <button class="reflexion-btn">
-                        <span>Leer reflexión completa</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="reflexion-card add-reflexion animate-on-scroll">
+                <!-- Las reflexiones se generan dinamicamente desde data/reflexiones.json -->
+                <div class="reflexion-card add-reflexion animate-on-scroll" style="display: none;">
                     <div class="add-icon">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="12" y1="5" x2="12" y2="19"/>
                             <line x1="5" y1="12" x2="19" y2="12"/>
                         </svg>
                     </div>
-                    <span class="add-text">Agregar Reflexión</span>
+                    <span class="add-text">Edita data/reflexiones.json</span>
                 </div>
             </div>
         </section>
