@@ -1,0 +1,21 @@
+{
+  "seccion": "parciales",
+  "descripcion": "Examenes parciales y evaluaciones",
+  "items": [
+    {
+      "id": "parcial-001",
+      "numero": "01",
+      "titulo": "Ejemplo de Parcial",
+      "descripcion": "Este es un parcial de ejemplo. Edita este archivo JSON para agregar tus propios parciales.",
+      "fecha": "01/01/2024",
+      "materia": "Ejemplo",
+      "calificacion": "A",
+      "tipo": "documento",
+      "archivoOriginal": "contenido/parciales/parcial-001/documento.pdf",
+      "paginas": [
+        "contenido/parciales/parcial-001/pagina-1.jpg"
+      ],
+      "etiquetas": ["examen", "evaluacion"]
+    }
+  ]
+}
