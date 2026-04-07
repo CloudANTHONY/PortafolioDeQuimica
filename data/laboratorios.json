@@ -1,0 +1,20 @@
+{
+  "seccion": "laboratorios",
+  "descripcion": "Documentacion de laboratorios y experimentos",
+  "items": [
+    {
+      "id": "lab-001",
+      "numero": "01",
+      "titulo": "Ejemplo de Laboratorio",
+      "descripcion": "Este es un laboratorio de ejemplo. Edita este archivo JSON para agregar tus propios laboratorios.",
+      "fecha": "01/01/2024",
+      "materia": "Ciencias",
+      "tipo": "documento",
+      "archivoOriginal": "contenido/laboratorios/lab-001/documento.pdf",
+      "paginas": [
+        "contenido/laboratorios/lab-001/pagina-1.jpg"
+      ],
+      "etiquetas": ["experimento", "ciencias"]
+    }
+  ]
+}
