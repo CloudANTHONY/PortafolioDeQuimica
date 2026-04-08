@@ -7,7 +7,7 @@
       "numero": "01",
       "titulo": "Ejemplo de Tarea",
       "descripcion": "Esta es una tarea de ejemplo. Edita este archivo JSON para agregar tus propias tareas.",
-      "fecha": "01/01/2024",
+      "fecha": "01/01/2026",
       "materia": "Ejemplo",
       "tipo": "documento",
       "archivoOriginal": "contenido/tareas/tarea-001/documento.pdf",
